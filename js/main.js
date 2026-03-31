@@ -9,6 +9,72 @@ let currentCondicionalExercise = 1;
 let currentRepeticaoSubpage = 'conceitos';
 let currentRepeticaoExercise = 1;
 
+// EXPORTA AS VARIÁVEIS PARA O ESCOPO GLOBAL (para o core.js acessar)
+window.currentPage = currentPage;
+window.currentOperadorSubpage = currentOperadorSubpage;
+window.currentOperadorExercise = currentOperadorExercise;
+window.currentCondicionalSubpage = currentCondicionalSubpage;
+window.currentCondicionalExercise = currentCondicionalExercise;
+window.currentRepeticaoSubpage = currentRepeticaoSubpage;
+window.currentRepeticaoExercise = currentRepeticaoExercise;
+
+// Função para sincronizar as variáveis globais com as locais
+function syncGlobalState() {
+  window.currentPage = currentPage;
+  window.currentOperadorSubpage = currentOperadorSubpage;
+  window.currentOperadorExercise = currentOperadorExercise;
+  window.currentCondicionalSubpage = currentCondicionalSubpage;
+  window.currentCondicionalExercise = currentCondicionalExercise;
+  window.currentRepeticaoSubpage = currentRepeticaoSubpage;
+  window.currentRepeticaoExercise = currentRepeticaoExercise;
+}
+
+// Função para restaurar o estado salvo
+function restoreSavedState() {
+  const lastPage = localStorage.getItem('lastPage');
+  if (lastPage) {
+    currentPage = lastPage;
+    window.currentPage = lastPage;
+  }
+  
+  // Restaura os estados específicos
+  const opsSubpage = localStorage.getItem('operators_subpage');
+  if (opsSubpage) {
+    currentOperadorSubpage = opsSubpage;
+    window.currentOperadorSubpage = opsSubpage;
+  }
+  
+  const opsExercise = localStorage.getItem('operators_exercise');
+  if (opsExercise) {
+    currentOperadorExercise = parseInt(opsExercise);
+    window.currentOperadorExercise = currentOperadorExercise;
+  }
+  
+  const condSubpage = localStorage.getItem('conditionals_subpage');
+  if (condSubpage) {
+    currentCondicionalSubpage = condSubpage;
+    window.currentCondicionalSubpage = condSubpage;
+  }
+  
+  const condExercise = localStorage.getItem('conditionals_exercise');
+  if (condExercise) {
+    currentCondicionalExercise = parseInt(condExercise);
+    window.currentCondicionalExercise = currentCondicionalExercise;
+  }
+  
+  const loopsSubpage = localStorage.getItem('loops_subpage');
+  if (loopsSubpage) {
+    currentRepeticaoSubpage = loopsSubpage;
+    window.currentRepeticaoSubpage = loopsSubpage;
+  }
+  
+  const loopsExercise = localStorage.getItem('loops_exercise');
+  if (loopsExercise) {
+    currentRepeticaoExercise = parseInt(loopsExercise);
+    window.currentRepeticaoExercise = currentRepeticaoExercise;
+  }
+}
+
 // Mapeamento de páginas
 let pages = {
   home: renderHomePage,
@@ -44,6 +110,9 @@ function loadPage(pageId) {
   }
   
   currentPage = pageId;
+  window.currentPage = pageId; // Sincroniza com global
+  syncGlobalState();
+  
   const contentContainer = document.getElementById('main-content');
   
   if (contentContainer && pages[pageId]) {
@@ -95,11 +164,14 @@ function setupAmbienteEvents() {
     btn.addEventListener('click', (e) => {
       const lang = btn.getAttribute('data-lang');
       if (lang && lang !== currentLanguage) {
-        // Troca a linguagem no seletor
+        // SALVA O ESTADO ANTES DE TROCAR
+        if (typeof saveCurrentPageState === 'function') {
+          saveCurrentPageState();
+        }
+        
         const languageSelect = document.getElementById('language-select');
         if (languageSelect) {
           languageSelect.value = lang;
-          // Dispara o evento de mudança
           languageSelect.dispatchEvent(new Event('change'));
         }
       }
@@ -130,6 +202,8 @@ function setupOperatorsEvents() {
       const subpage = btn.getAttribute('data-subpage');
       if (subpage) {
         currentOperadorSubpage = subpage;
+        window.currentOperadorSubpage = subpage;
+        syncGlobalState();
         loadPage('operators');
       }
     });
@@ -141,6 +215,8 @@ function setupOperatorsEvents() {
       const exId = parseInt(btn.getAttribute('data-ex-id'));
       if (exId) {
         currentOperadorExercise = exId;
+        window.currentOperadorExercise = exId;
+        syncGlobalState();
         loadPage('operators');
       }
     });
@@ -170,6 +246,8 @@ function setupConditionalsEvents() {
       const subpage = btn.getAttribute('data-subpage');
       if (subpage) {
         currentCondicionalSubpage = subpage;
+        window.currentCondicionalSubpage = subpage;
+        syncGlobalState();
         loadPage('conditionals');
       }
     });
@@ -181,6 +259,8 @@ function setupConditionalsEvents() {
       const exId = parseInt(btn.getAttribute('data-ex-id'));
       if (exId) {
         currentCondicionalExercise = exId;
+        window.currentCondicionalExercise = exId;
+        syncGlobalState();
         loadPage('conditionals');
       }
     });
@@ -210,6 +290,8 @@ function setupLoopsEvents() {
       const subpage = btn.getAttribute('data-subpage');
       if (subpage) {
         currentRepeticaoSubpage = subpage;
+        window.currentRepeticaoSubpage = subpage;
+        syncGlobalState();
         loadPage('loops');
       }
     });
@@ -221,6 +303,8 @@ function setupLoopsEvents() {
       const exId = parseInt(btn.getAttribute('data-ex-id'));
       if (exId) {
         currentRepeticaoExercise = exId;
+        window.currentRepeticaoExercise = exId;
+        syncGlobalState();
         loadPage('loops');
       }
     });
@@ -316,6 +400,9 @@ function setupPagesAfterLoad() {
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM loaded, current language:', currentLanguage);
   
+  // Restaura o estado salvo ANTES de qualquer outra coisa
+  restoreSavedState();
+  
   // Adiciona botão de tema e outros componentes
   addThemeButton();
   initTheme();
@@ -329,40 +416,25 @@ document.addEventListener('DOMContentLoaded', () => {
   loadScripts(scriptsToLoad, () => {
     console.log('All scripts loaded');
     
-    // Aguarda um pequeno delay para garantir que as funções estejam disponíveis
     setTimeout(() => {
       if (checkFunctionsReady()) {
         console.log('All functions ready');
         
-        // Configura as páginas
         setupPagesAfterLoad();
-        
-        // Atualiza o footer
         updateFooter();
         
-        // Carrega a página inicial
-        loadPage('home');
+        // Carrega a página que estava salva
+        const pageToLoad = currentPage;
+        console.log('Restoring page:', pageToLoad);
+        loadPage(pageToLoad);
       } else {
         console.error('Functions not ready after loading scripts');
-        console.log('Available functions:', {
-          renderIntroPage: typeof renderIntroPage,
-          renderConceitosOperadores: typeof renderConceitosOperadores,
-          renderExerciciosOperadores: typeof renderExerciciosOperadores,
-          renderOperatorsPage: typeof renderOperatorsPage,
-          renderConceitosCondicionais: typeof renderConceitosCondicionais,
-          renderExerciciosCondicionais: typeof renderExerciciosCondicionais,
-          renderConditionalsPage: typeof renderConditionalsPage,
-          renderConceitosRepeticao: typeof renderConceitosRepeticao,
-          renderExerciciosRepeticao: typeof renderExerciciosRepeticao,
-          renderLoopsPage: typeof renderLoopsPage
-        });
         
-        // Tenta novamente após 1 segundo
         setTimeout(() => {
           if (checkFunctionsReady()) {
             setupPagesAfterLoad();
             updateFooter();
-            loadPage('home');
+            loadPage(currentPage);
           } else {
             const langDisplay = getLanguageDisplayName();
             document.getElementById('main-content').innerHTML = `
@@ -370,14 +442,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h2>⚠️ Erro ao carregar conteúdo</h2>
                 <p>Não foi possível carregar os scripts necessários para ${langDisplay}.</p>
                 <p>Verifique se os arquivos existem na pasta /js/${currentLanguage}/</p>
-                <p>Arquivos esperados:</p>
-                <ul style="text-align: left; display: inline-block;">
-                  <li>/js/${currentLanguage}/intro.js</li>
-                  <li>/js/${currentLanguage}/operators.js</li>
-                  <li>/js/${currentLanguage}/conditions.js</li>
-                  <li>/js/${currentLanguage}/loops.js</li>
-                </ul>
-                <br><br>
                 <button onclick="location.reload()" class="btn-demo">Recarregar</button>
               </div>
             `;

@@ -36,6 +36,36 @@ function toggleTheme() {
 // ========== FUNCIONALIDADE DE SELEÇÃO DE LINGUAGEM ==========
 let currentLanguage = 'portugol';
 
+// Função para salvar o estado completo da página atual
+function saveCurrentPageState() {
+  // Salva a página atual (vinda do main.js)
+  const currentPageId = window.currentPage || 'home';
+  localStorage.setItem('lastPage', currentPageId);
+  
+  // Salva os estados específicos de cada página
+  localStorage.setItem('operators_subpage', window.currentOperadorSubpage || 'conceitos');
+  localStorage.setItem('operators_exercise', window.currentOperadorExercise || 1);
+  localStorage.setItem('conditionals_subpage', window.currentCondicionalSubpage || 'conceitos');
+  localStorage.setItem('conditionals_exercise', window.currentCondicionalExercise || 1);
+  localStorage.setItem('loops_subpage', window.currentRepeticaoSubpage || 'conceitos');
+  localStorage.setItem('loops_exercise', window.currentRepeticaoExercise || 1);
+}
+
+// Função para restaurar o estado da página
+function restorePageState() {
+  const lastPage = localStorage.getItem('lastPage') || 'home';
+  
+  // Restaura os estados específicos
+  window.currentOperadorSubpage = localStorage.getItem('operators_subpage') || 'conceitos';
+  window.currentOperadorExercise = parseInt(localStorage.getItem('operators_exercise')) || 1;
+  window.currentCondicionalSubpage = localStorage.getItem('conditionals_subpage') || 'conceitos';
+  window.currentCondicionalExercise = parseInt(localStorage.getItem('conditionals_exercise')) || 1;
+  window.currentRepeticaoSubpage = localStorage.getItem('loops_subpage') || 'conceitos';
+  window.currentRepeticaoExercise = parseInt(localStorage.getItem('loops_exercise')) || 1;
+  
+  return lastPage;
+}
+
 function initLanguageSelector() {
   const languageSelect = document.getElementById('language-select');
   if (!languageSelect) return;
@@ -46,8 +76,18 @@ function initLanguageSelector() {
     languageSelect.value = savedLanguage;
   }
   
-  languageSelect.addEventListener('change', (e) => {
+  // Remove listener antigo se existir
+  if (languageSelect._changeListener) {
+    languageSelect.removeEventListener('change', languageSelect._changeListener);
+  }
+  
+  const changeListener = (e) => {
     const selectedLanguage = e.target.value;
+    if (selectedLanguage === currentLanguage) return;
+    
+    // SALVA O ESTADO ANTES DE TROCAR A LINGUAGEM
+    saveCurrentPageState();
+    
     currentLanguage = selectedLanguage;
     localStorage.setItem('language', selectedLanguage);
     
@@ -56,7 +96,10 @@ function initLanguageSelector() {
     
     // Recarrega a página
     window.location.reload();
-  });
+  };
+  
+  languageSelect.addEventListener('change', changeListener);
+  languageSelect._changeListener = changeListener;
 }
 
 // Função para limpar o estado das páginas antes de trocar de linguagem

@@ -9,6 +9,7 @@ const ambienteData = {
         sistemas: ["Windows", "macOS", "Linux"],
         downloadLink: "https://univali-lite.github.io/Portugol-Studio/",
         documentacao: "https://portugol.dev/",
+        compiladorOnline: "https://portugol.dev/",
         instalacao: [
             "É possível usar a versão WEBStudio no link da  documentação",
             "Para uso local, clique no link de Download acima",
@@ -35,6 +36,7 @@ const ambienteData = {
         sistemas: ["Windows", "macOS", "Linux"],
         downloadLink: "https://nodejs.org/",
         documentacao: "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript",
+        compiladorOnline: "https://onecompiler.com/javascript",
         instalacao: [
             "Para front-end: apenas um navegador (Chrome, Firefox) e um editor de código",
             "Para back-end com Node.js: acesse https://nodejs.org/",
@@ -62,6 +64,7 @@ console.log(\`Olá, \${nome}!\`);`
         sistemas: ["Windows", "macOS", "Linux"],
         downloadLink: "https://dotnet.microsoft.com/download",
         documentacao: "https://learn.microsoft.com/pt-br/dotnet/csharp/",
+        compiladorOnline: "https://dotnetfiddle.net",
         instalacao: [
             "Acesse https://dotnet.microsoft.com/download",
             "Baixe o SDK .NET mais recente (versão LTS recomendada)",
@@ -96,6 +99,7 @@ class Program
         sistemas: ["Windows", "macOS", "Linux"],
         downloadLink: "https://www.python.org/downloads/",
         documentacao: "https://docs.python.org/pt-br/3/",
+        compiladorOnline: "https://onecompiler.com/python",
         instalacao: [
             "Acesse https://www.python.org/downloads/",
             "Baixe a versão mais recente (recomendado: Python 3.x)",
@@ -140,6 +144,9 @@ function renderAmbientePage() {
                 <div class="ambiente-links">
                     <a href="${langData.downloadLink}" target="_blank" class="btn-download-ambiente">
                         ⬇️ Download
+                    </a>
+                    <a href="${langData.compiladorOnline}" target="_blank" class="btn-download-ambiente">
+                        🛜 Compilador Online
                     </a>
                     <a href="${langData.documentacao}" target="_blank" class="btn-docs-ambiente">
                         📚 Documentação

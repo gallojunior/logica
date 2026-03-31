@@ -68,13 +68,13 @@ body[data-language="csharp"] {
 /* Python */
 body[data-language="python"] {
   --lang-primary: #3776ab;
-  --lang-secondary: #ffd43b;
-  --lang-gradient: linear-gradient(135deg, #3776ab, #ffd43b);
+  --lang-secondary: #2a5a8c;
+  --lang-gradient: linear-gradient(135deg, #3776ab, #2a5a8c);
   --lang-light: #e6f4ff;
-  --lang-dark: #1e40af;
+  --lang-dark: #1e3a5f;
   --hover-bg: rgba(55, 118, 171, 0.1);
   --active-bg: rgba(55, 118, 171, 0.15);
-  --active-text: #1e40af;
+  --active-text: #3776ab;
 }
 
 /* Portugol - Adicionado */
@@ -1626,7 +1626,7 @@ code {
 .btn-docs-ambiente {
     background: var(--bg-primary);
     color: var(--text-secondary);
-    border: 1px solid var(--border-light);
+    border: 2px solid var(--border-light);
 }
 
 .btn-docs-ambiente:hover {

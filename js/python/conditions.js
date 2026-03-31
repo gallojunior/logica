@@ -1,3 +1,4 @@
+// ========== DADOS DOS EXERCÍCIOS DE CONDICIONAIS EM PYTHON ==========
 const condicionaisExercises = [
   {
     id: 1,
@@ -272,157 +273,10 @@ if valorUnitario > 0:
       { values: { codigo: 100, quantidade: 3 }, result: 30, stepByStep: "código 100 → R$10 × 3 = R$30" }
     ],
     explanation: "If-elif-else para selecionar valor unitário."
-  },
-  {
-    id: 11,
-    title: "Acesso à Casa Noturna",
-    statement: "Acesso permitido se idade ≥ 18 ou possuir autorização dos responsáveis.",
-    input: "idade = 17, autorizacao = True",
-    output: "ACESSO PERMITIDO",
-    code: `# Acesso à Casa Noturna
-idade = int(input("Informe a idade: "))
-autorizacao = input("Possui autorização? (s/n): ").lower() == 's'
-
-if idade >= 18 or autorizacao:
-    print("ACESSO PERMITIDO")
-else:
-    print("ACESSO NEGADO")`,
-    testCases: [
-      { values: { idade: 20, autorizacao: False }, result: "PERMITIDO", stepByStep: "idade ≥ 18 → PERMITIDO" },
-      { values: { idade: 17, autorizacao: True }, result: "PERMITIDO", stepByStep: "autorização → PERMITIDO" },
-      { values: { idade: 16, autorizacao: False }, result: "NEGADO", stepByStep: "nenhuma condição → NEGADO" }
-    ],
-    explanation: "Operador or para verificar pelo menos uma condição."
-  },
-  {
-    id: 12,
-    title: "Frete Grátis",
-    statement: "Frete grátis se valor ≥ R$200 ou cliente for membro do programa de fidelidade.",
-    input: "valor = 150, membro = True",
-    output: "FRETE GRATIS",
-    code: `# Frete Grátis
-valor = float(input("Informe o valor da compra: R$ "))
-membro = input("Cliente é membro? (s/n): ").lower() == 's'
-
-if valor >= 200 or membro:
-    print("FRETE GRATIS")
-else:
-    print("FRETE PAGO")`,
-    testCases: [
-      { values: { valor: 250, membro: False }, result: "FRETE GRATIS", stepByStep: "valor ≥ 200 → GRÁTIS" },
-      { values: { valor: 150, membro: True }, result: "FRETE GRATIS", stepByStep: "membro → GRÁTIS" },
-      { values: { valor: 100, membro: False }, result: "FRETE PAGO", stepByStep: "nenhuma → PAGO" }
-    ],
-    explanation: "Frete grátis quando pelo menos uma condição é atendida."
-  },
-  {
-    id: 13,
-    title: "Senha Forte",
-    statement: "Verifique se a senha é forte: tamanho ≥ 8 e diferente de '12345678'.",
-    input: "senha = 'minhasenha'",
-    output: "SENHA ACEITA",
-    code: `# Senha Forte
-senha = input("Informe a senha: ")
-
-if len(senha) >= 8 and senha != "12345678":
-    print("SENHA ACEITA")
-else:
-    print("SENHA FRACA")`,
-    testCases: [
-      { values: { senha: "minhasenha123" }, result: "ACEITA", stepByStep: "tamanho ≥ 8 e diferente → ACEITA" },
-      { values: { senha: "12345678" }, result: "FRACA", stepByStep: "senha padrão → FRACA" },
-      { values: { senha: "abc" }, result: "FRACA", stepByStep: "tamanho < 8 → FRACA" }
-    ],
-    explanation: "Dois requisitos: tamanho mínimo e não ser senha padrão."
-  },
-  {
-    id: 14,
-    title: "Triagem de Risco",
-    statement: "RISCO ALTO se temperatura ≥ 39°C OU falta de ar OU idade ≥ 65.",
-    input: "temperatura = 38.5, faltaAr = False, idade = 70",
-    output: "RISCO ALTO",
-    code: `# Triagem de Risco
-temperatura = float(input("Informe a temperatura: "))
-faltaAr = input("Tem falta de ar? (s/n): ").lower() == 's'
-idade = int(input("Informe a idade: "))
-
-if temperatura >= 39 or faltaAr or idade >= 65:
-    print("RISCO ALTO")
-else:
-    print("RISCO BAIXO")`,
-    testCases: [
-      { values: { temperatura: 39, faltaAr: False, idade: 30 }, result: "RISCO ALTO", stepByStep: "temperatura alta → ALTO" },
-      { values: { temperatura: 37, faltaAr: True, idade: 30 }, result: "RISCO ALTO", stepByStep: "falta de ar → ALTO" },
-      { values: { temperatura: 37, faltaAr: False, idade: 70 }, result: "RISCO ALTO", stepByStep: "idade ≥ 65 → ALTO" }
-    ],
-    explanation: "Três condições combinadas com or."
-  },
-  {
-    id: 15,
-    title: "Prioridade de Atendimento",
-    statement: "PRIORITÁRIO se for gestante, idoso ou tiver deficiência.",
-    input: "ehGestante = False, ehIdoso = True, temDeficiencia = False",
-    output: "PRIORITARIO",
-    code: `# Prioridade de Atendimento
-ehGestante = input("É gestante? (s/n): ").lower() == 's'
-ehIdoso = input("É idoso? (s/n): ").lower() == 's'
-temDeficiencia = input("Tem deficiência? (s/n): ").lower() == 's'
-
-if ehGestante or ehIdoso or temDeficiencia:
-    print("PRIORITARIO")
-else:
-    print("COMUM")`,
-    testCases: [
-      { values: { ehGestante: True, ehIdoso: False, temDeficiencia: False }, result: "PRIORITARIO", stepByStep: "gestante → PRIORITÁRIO" },
-      { values: { ehGestante: False, ehIdoso: True, temDeficiencia: False }, result: "PRIORITARIO", stepByStep: "idoso → PRIORITÁRIO" },
-      { values: { ehGestante: False, ehIdoso: False, temDeficiencia: True }, result: "PRIORITARIO", stepByStep: "deficiência → PRIORITÁRIO" }
-    ],
-    explanation: "Operador or para verificar se há pelo menos uma condição."
-  },
-  {
-    id: 16,
-    title: "Bônus para Vendedores",
-    statement: "Bônus se vendas ≥ R$5000 OU (for novato E vendas ≥ R$2000).",
-    input: "vendas = 2500, novato = True",
-    output: "BONUS",
-    code: `# Bônus para Vendedores
-vendas = float(input("Informe o total de vendas: R$ "))
-novato = input("É novato? (s/n): ").lower() == 's'
-
-if vendas >= 5000 or (novato and vendas >= 2000):
-    print("BONUS")
-else:
-    print("SEM BONUS")`,
-    testCases: [
-      { values: { vendas: 6000, novato: False }, result: "BONUS", stepByStep: "≥5000 → BÔNUS" },
-      { values: { vendas: 2500, novato: True }, result: "BONUS", stepByStep: "novato e ≥2000 → BÔNUS" },
-      { values: { vendas: 2500, novato: False }, result: "SEM BONUS", stepByStep: "nenhuma condição → SEM BÔNUS" }
-    ],
-    explanation: "Combinação de or e and."
-  },
-  {
-    id: 17,
-    title: "Controle de Acesso por Credenciais",
-    statement: "Entrada permitida se (tem crachá OU está na lista) E horário entre 8 e 20.",
-    input: "temCracha = True, estaNaLista = False, horario = 14",
-    output: "ENTRA",
-    code: `# Controle de Acesso
-temCracha = input("Tem crachá? (s/n): ").lower() == 's'
-estaNaLista = input("Está na lista autorizada? (s/n): ").lower() == 's'
-horario = int(input("Informe o horário (0-23): "))
-
-if (temCracha or estaNaLista) and (8 <= horario <= 20):
-    print("ENTRA")
-else:
-    print("NAO ENTRA")`,
-    testCases: [
-      { values: { temCracha: True, estaNaLista: False, horario: 14 }, result: "ENTRA", stepByStep: "tem crachá e horário OK → ENTRA" },
-      { values: { temCracha: False, estaNaLista: False, horario: 14 }, result: "NAO ENTRA", stepByStep: "sem autorização → NÃO ENTRA" },
-      { values: { temCracha: True, estaNaLista: False, horario: 22 }, result: "NAO ENTRA", stepByStep: "horário inválido → NÃO ENTRA" }
-    ],
-    explanation: "Combinação de operadores: autorização (or) e horário (and)."
   }
 ];
+
+// ========== FUNÇÕES DE RENDERIZAÇÃO ==========
 
 // Renderiza a seção de conceitos de condicionais em Python
 function renderConceitosCondicionais() {
@@ -497,7 +351,7 @@ else:
 
 // Renderiza a seção de exercícios de condicionais
 function renderExerciciosCondicionais() {
-  const currentEx = condicionaisExercises.find(e => e.id === currentCondicionalExercise) || condicionaisExercises[0];
+  const currentEx = condicionaisExercises.find(e => e.id === window.currentCondicionalExercise) || condicionaisExercises[0];
   
   return `
     <div class="exercises-filter">
@@ -507,7 +361,7 @@ function renderExerciciosCondicionais() {
       </div>
       <div class="filter-buttons">
         ${condicionaisExercises.map(ex => `
-          <button class="filter-btn ${ex.id === currentCondicionalExercise ? 'active' : ''}" data-ex-id="${ex.id}">
+          <button class="filter-btn ${ex.id === window.currentCondicionalExercise ? 'active' : ''}" data-ex-id="${ex.id}">
             ${ex.id.toString().padStart(2, '0')}
           </button>
         `).join('')}
@@ -565,6 +419,8 @@ function renderExerciciosCondicionais() {
 
 // Função para renderizar a página completa de condicionais
 function renderConditionalsPage() {
+  const currentSubpage = window.currentCondicionalSubpage || 'conceitos';
+  
   return `
     <div class="page-header">
       <h1 class="page-title"><span>🔀</span> Estruturas Condicionais em Python</h1>
@@ -572,16 +428,16 @@ function renderConditionalsPage() {
     </div>
     
     <div class="sub-nav">
-      <button class="sub-nav-btn ${currentCondicionalSubpage === 'conceitos' ? 'active' : ''}" data-subpage="conceitos">
+      <button class="sub-nav-btn ${currentSubpage === 'conceitos' ? 'active' : ''}" data-subpage="conceitos">
         📘 Conceitos
       </button>
-      <button class="sub-nav-btn ${currentCondicionalSubpage === 'exercicios' ? 'active' : ''}" data-subpage="exercicios">
+      <button class="sub-nav-btn ${currentSubpage === 'exercicios' ? 'active' : ''}" data-subpage="exercicios">
         ✏️ Exercícios
       </button>
     </div>
     
     <div id="condicionais-content">
-      ${currentCondicionalSubpage === 'conceitos' ? renderConceitosCondicionais() : renderExerciciosCondicionais()}
+      ${currentSubpage === 'conceitos' ? renderConceitosCondicionais() : renderExerciciosCondicionais()}
     </div>
   `;
 }

@@ -51,6 +51,8 @@ function saveCurrentPageState() {
   localStorage.setItem('loops_exercise', window.currentRepeticaoExercise || 1);
   localStorage.setItem('arrays_subpage', window.currentArraysSubpage || 'conceitos');
   localStorage.setItem('arrays_exercise', window.currentArraysExercise || 1);
+  localStorage.setItem('functions_subpage', window.currentFunctionsSubpage || 'conceitos');
+  localStorage.setItem('functions_exercise', window.currentFunctionsExercise || 1);
 }
 
 // Função para restaurar o estado da página
@@ -135,26 +137,31 @@ if (language === 'portugol') {
     scripts.push('./js/portugol/conditions.js');
     scripts.push('./js/portugol/loops.js');
     scripts.push('./js/portugol/intro.js');
-    scripts.push('./js/portugol/arrays.js');  // Adicione esta linha
+    scripts.push('./js/portugol/arrays.js');
+    scripts.push('./js/portugol/functions.js');
   } else if (language === 'javascript') {
     scripts.push('./js/javascript/operators.js');
     scripts.push('./js/javascript/conditions.js');
     scripts.push('./js/javascript/loops.js');
     scripts.push('./js/javascript/intro.js');
-    scripts.push('./js/javascript/arrays.js');  // Adicione esta linha
+    scripts.push('./js/javascript/arrays.js');
+    scripts.push('./js/javascript/functions.js');
   } else if (language === 'csharp') {
     scripts.push('./js/csharp/operators.js');
     scripts.push('./js/csharp/conditions.js');
     scripts.push('./js/csharp/loops.js');
     scripts.push('./js/csharp/intro.js');
-    scripts.push('./js/csharp/arrays.js');  // Adicione esta linha
+    scripts.push('./js/csharp/arrays.js');
+    scripts.push('./js/csharp/functions.js');
   } else if (language === 'python') {
     scripts.push('./js/python/operators.js');
     scripts.push('./js/python/conditions.js');
     scripts.push('./js/python/loops.js');
     scripts.push('./js/python/intro.js');
-    scripts.push('./js/python/arrays.js');  // Adicione esta linha
-  }  scripts.push('./js/ambiente.js');
+    scripts.push('./js/python/arrays.js');
+    scripts.push('./js/python/functions.js');
+  }
+  scripts.push('./js/ambiente.js');
 
   return scripts;
 }
@@ -374,8 +381,8 @@ function renderFunctionsPage() {
     <div class="content-placeholder">
       <h2>⚙️ Funções</h2>
       <p>Modularização, reuso de código, passagem de parâmetros e retorno de valores. Conteúdo em breve!</p>
-      <div class="callout" style="display: inline-block; margin-top: 1rem;">
-        <p>🔜 Disponível em breve.</p>
+      <div class="callout" style="margin-top: 1rem;">
+        <p style="margin:1.5rem">🔜 Disponível em breve.</p>
       </div>
     </div>
   `;

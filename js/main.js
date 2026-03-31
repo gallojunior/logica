@@ -10,6 +10,8 @@ let currentRepeticaoSubpage = 'conceitos';
 let currentRepeticaoExercise = 1;
 let currentArraysSubpage = 'conceitos';
 let currentArraysExercise = 1;
+let currentFunctionsSubpage = 'conceitos';
+let currentFunctionsExercise = 1;
 
 // EXPORTA AS VARIÁVEIS PARA O ESCOPO GLOBAL (para o core.js acessar)
 window.currentPage = currentPage;
@@ -21,6 +23,8 @@ window.currentRepeticaoSubpage = currentRepeticaoSubpage;
 window.currentRepeticaoExercise = currentRepeticaoExercise;
 window.currentArraysSubpage = currentArraysSubpage;
 window.currentArraysExercise = currentArraysExercise;
+window.currentFunctionsSubpage = currentFunctionsSubpage;
+window.currentFunctionsExercise = currentFunctionsExercise;
 
 // Função para sincronizar as variáveis globais com as locais
 function syncGlobalState() {
@@ -31,7 +35,7 @@ function syncGlobalState() {
   window.currentCondicionalExercise = currentCondicionalExercise;
   window.currentRepeticaoSubpage = currentRepeticaoSubpage;
   window.currentRepeticaoExercise = currentRepeticaoExercise;
-  window.currentArraysSubpage = currentArraysSubpage; 
+  window.currentArraysSubpage = currentArraysSubpage;
   window.currentArraysExercise = currentArraysExercise;
 }
 
@@ -42,38 +46,38 @@ function restoreSavedState() {
     currentPage = lastPage;
     window.currentPage = lastPage;
   }
-  
+
   // Restaura os estados específicos
   const opsSubpage = localStorage.getItem('operators_subpage');
   if (opsSubpage) {
     currentOperadorSubpage = opsSubpage;
     window.currentOperadorSubpage = opsSubpage;
   }
-  
+
   const opsExercise = localStorage.getItem('operators_exercise');
   if (opsExercise) {
     currentOperadorExercise = parseInt(opsExercise);
     window.currentOperadorExercise = currentOperadorExercise;
   }
-  
+
   const condSubpage = localStorage.getItem('conditionals_subpage');
   if (condSubpage) {
     currentCondicionalSubpage = condSubpage;
     window.currentCondicionalSubpage = condSubpage;
   }
-  
+
   const condExercise = localStorage.getItem('conditionals_exercise');
   if (condExercise) {
     currentCondicionalExercise = parseInt(condExercise);
     window.currentCondicionalExercise = currentCondicionalExercise;
   }
-  
+
   const loopsSubpage = localStorage.getItem('loops_subpage');
   if (loopsSubpage) {
     currentRepeticaoSubpage = loopsSubpage;
     window.currentRepeticaoSubpage = loopsSubpage;
   }
-  
+
   const loopsExercise = localStorage.getItem('loops_exercise');
   if (loopsExercise) {
     currentRepeticaoExercise = parseInt(loopsExercise);
@@ -85,11 +89,23 @@ function restoreSavedState() {
     currentArraysSubpage = arraysSubpage;
     window.currentArraysSubpage = arraysSubpage;
   }
-  
+
   const arraysExercise = localStorage.getItem('arrays_exercise');
   if (arraysExercise) {
     currentArraysExercise = parseInt(arraysExercise);
     window.currentArraysExercise = currentArraysExercise;
+  }
+
+  const functionsSubpage = localStorage.getItem('functions_subpage');
+  if (functionsSubpage) {
+    currentFunctionsSubpage = functionsSubpage;
+    window.currentFunctionsSubpage = functionsSubpage;
+  }
+
+  const functionsExercise = localStorage.getItem('functions_exercise');
+  if (functionsExercise) {
+    currentFunctionsExercise = parseInt(functionsExercise);
+    window.currentFunctionsExercise = currentFunctionsExercise;
   }
 }
 
@@ -102,7 +118,7 @@ let pages = {
   conditionals: null,
   loops: null,
   arrays: null,
-  functions: renderFunctionsPage
+  functions: null
 };
 
 function setActiveNavItem(pageId) {
@@ -121,25 +137,25 @@ function loadPage(pageId) {
   console.log('Loading page:', pageId);
   console.log('Current language:', currentLanguage);
   console.log('Pages available:', Object.keys(pages));
-  
+
   if (!pages[pageId]) {
     console.warn('Page not found:', pageId);
     pageId = 'home';
   }
-  
+
   currentPage = pageId;
   window.currentPage = pageId; // Sincroniza com global
   syncGlobalState();
-  
+
   const contentContainer = document.getElementById('main-content');
-  
+
   if (contentContainer && pages[pageId]) {
     contentContainer.innerHTML = pages[pageId]();
     setupPageEvents(pageId);
   } else {
     console.error('Content container not found or page function missing');
   }
-  
+
   setActiveNavItem(pageId);
 }
 
@@ -174,8 +190,11 @@ function setupPageEvents(pageId) {
   if (pageId === 'loops') {
     setupLoopsEvents();
   }
-  if (pageId === 'arrays') { 
+  if (pageId === 'arrays') {
     setupArraysEvents();
+  }
+  if (pageId === 'functions') {
+    setupFunctionsEvents();
   }
 }
 
@@ -189,7 +208,7 @@ function setupAmbienteEvents() {
         if (typeof saveCurrentPageState === 'function') {
           saveCurrentPageState();
         }
-        
+
         const languageSelect = document.getElementById('language-select');
         if (languageSelect) {
           languageSelect.value = lang;
@@ -198,7 +217,7 @@ function setupAmbienteEvents() {
       }
     });
   });
-  
+
   const copyBtn = document.querySelector('.copy-ambiente-btn');
   if (copyBtn) {
     copyBtn.addEventListener('click', () => {
@@ -392,16 +411,60 @@ function setupArraysEvents() {
   }
 }
 
+function setupFunctionsEvents() {
+  const subNavBtns = document.querySelectorAll('.sub-nav-btn');
+  subNavBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const subpage = btn.getAttribute('data-subpage');
+      if (subpage) {
+        currentFunctionsSubpage = subpage;
+        window.currentFunctionsSubpage = subpage;
+        syncGlobalState();
+        loadPage('functions');
+      }
+    });
+  });
+
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const exId = parseInt(btn.getAttribute('data-ex-id'));
+      if (exId) {
+        currentFunctionsExercise = exId;
+        window.currentFunctionsExercise = exId;
+        syncGlobalState();
+        loadPage('functions');
+      }
+    });
+  });
+
+  const copyBtn = document.querySelector('.copy-code-btn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      const code = copyBtn.getAttribute('data-code');
+      if (code) {
+        navigator.clipboard.writeText(code.replace(/&quot;/g, '"')).then(() => {
+          const originalText = copyBtn.innerText;
+          copyBtn.innerText = '✓ Copiado!';
+          setTimeout(() => {
+            copyBtn.innerText = originalText;
+          }, 1800);
+        });
+      }
+    });
+  }
+}
+
 // Função para carregar scripts dinamicamente
 function loadScripts(scripts, callback) {
   let loaded = 0;
   const total = scripts.length;
-  
+
   if (total === 0) {
     callback();
     return;
   }
-  
+
   scripts.forEach(src => {
     const script = document.createElement('script');
     script.src = src;
@@ -426,77 +489,81 @@ function loadScripts(scripts, callback) {
 // Função para verificar se todas as funções necessárias estão disponíveis
 function checkFunctionsReady() {
   return typeof renderIntroPage !== 'undefined' &&
-         typeof renderConceitosOperadores !== 'undefined' &&
-         typeof renderExerciciosOperadores !== 'undefined' &&
-         typeof renderOperatorsPage !== 'undefined' &&
-         typeof renderConceitosCondicionais !== 'undefined' &&
-         typeof renderExerciciosCondicionais !== 'undefined' &&
-         typeof renderConditionalsPage !== 'undefined' &&
-         typeof renderConceitosRepeticao !== 'undefined' &&
-         typeof renderExerciciosRepeticao !== 'undefined' &&
-         typeof renderLoopsPage !== 'undefined' &&
-         typeof renderArraysPage !== 'undefined'; 
+    typeof renderConceitosOperadores !== 'undefined' &&
+    typeof renderExerciciosOperadores !== 'undefined' &&
+    typeof renderOperatorsPage !== 'undefined' &&
+    typeof renderConceitosCondicionais !== 'undefined' &&
+    typeof renderExerciciosCondicionais !== 'undefined' &&
+    typeof renderConditionalsPage !== 'undefined' &&
+    typeof renderConceitosRepeticao !== 'undefined' &&
+    typeof renderExerciciosRepeticao !== 'undefined' &&
+    typeof renderLoopsPage !== 'undefined' &&
+    typeof renderArraysPage !== 'undefined' &&
+    typeof renderFunctionsPage !== 'undefined';
 }
 
 // Função para configurar as páginas após carregar os scripts
 function setupPagesAfterLoad() {
   console.log('Setting up pages with language:', currentLanguage);
-  
+
   pages.ambiente = renderAmbientePage;
   pages.intro = renderIntroPage;
   pages.operators = renderOperatorsPage;
   pages.conditionals = renderConditionalsPage;
   pages.loops = renderLoopsPage;
   pages.arrays = renderArraysPage;
-  
+  pages.functions = renderFunctionsPage;
+
   // Aplica o tema da linguagem (função do core.js)
   if (typeof applyLanguageTheme === 'function') {
     applyLanguageTheme();
   }
-  
+
   console.log('Pages configured:', {
     ambiente: typeof pages.ambiente,
     intro: typeof pages.intro,
     operators: typeof pages.operators,
     conditionals: typeof pages.conditionals,
-    loops: typeof pages.loops
+    loops: typeof pages.loops,
+    arrays: typeof pages.arrays,
+    functions: typeof pages.functions
   });
 }
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM loaded, current language:', currentLanguage);
-  
+
   // Restaura o estado salvo ANTES de qualquer outra coisa
   restoreSavedState();
-  
+
   // Adiciona botão de tema e outros componentes
   addThemeButton();
   initTheme();
   initLanguageSelector();
   initNavigation();
   initHeaderLinks();
-  
+
   // Carrega os scripts da linguagem atual
   const scriptsToLoad = loadLanguageScripts(currentLanguage);
-  
+
   loadScripts(scriptsToLoad, () => {
     console.log('All scripts loaded');
-    
+
     setTimeout(() => {
       if (checkFunctionsReady()) {
         console.log('All functions ready');
-        
+
         setupPagesAfterLoad();
         updateFooter();
-        
+
         // Carrega a página que estava salva
         const pageToLoad = currentPage;
         console.log('Restoring page:', pageToLoad);
         loadPage(pageToLoad);
       } else {
         console.error('Functions not ready after loading scripts');
-        
+
         setTimeout(() => {
           if (checkFunctionsReady()) {
             setupPagesAfterLoad();

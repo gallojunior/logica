@@ -8,6 +8,8 @@ let currentCondicionalSubpage = 'conceitos';
 let currentCondicionalExercise = 1;
 let currentRepeticaoSubpage = 'conceitos';
 let currentRepeticaoExercise = 1;
+let currentArraysSubpage = 'conceitos';
+let currentArraysExercise = 1;
 
 // EXPORTA AS VARIÁVEIS PARA O ESCOPO GLOBAL (para o core.js acessar)
 window.currentPage = currentPage;
@@ -17,6 +19,8 @@ window.currentCondicionalSubpage = currentCondicionalSubpage;
 window.currentCondicionalExercise = currentCondicionalExercise;
 window.currentRepeticaoSubpage = currentRepeticaoSubpage;
 window.currentRepeticaoExercise = currentRepeticaoExercise;
+window.currentArraysSubpage = currentArraysSubpage;
+window.currentArraysExercise = currentArraysExercise;
 
 // Função para sincronizar as variáveis globais com as locais
 function syncGlobalState() {
@@ -27,6 +31,8 @@ function syncGlobalState() {
   window.currentCondicionalExercise = currentCondicionalExercise;
   window.currentRepeticaoSubpage = currentRepeticaoSubpage;
   window.currentRepeticaoExercise = currentRepeticaoExercise;
+  window.currentArraysSubpage = currentArraysSubpage; 
+  window.currentArraysExercise = currentArraysExercise;
 }
 
 // Função para restaurar o estado salvo
@@ -73,6 +79,18 @@ function restoreSavedState() {
     currentRepeticaoExercise = parseInt(loopsExercise);
     window.currentRepeticaoExercise = currentRepeticaoExercise;
   }
+
+  const arraysSubpage = localStorage.getItem('arrays_subpage');
+  if (arraysSubpage) {
+    currentArraysSubpage = arraysSubpage;
+    window.currentArraysSubpage = arraysSubpage;
+  }
+  
+  const arraysExercise = localStorage.getItem('arrays_exercise');
+  if (arraysExercise) {
+    currentArraysExercise = parseInt(arraysExercise);
+    window.currentArraysExercise = currentArraysExercise;
+  }
 }
 
 // Mapeamento de páginas
@@ -83,7 +101,7 @@ let pages = {
   operators: null,
   conditionals: null,
   loops: null,
-  arrays: renderArraysPage,
+  arrays: null,
   functions: renderFunctionsPage
 };
 
@@ -155,6 +173,9 @@ function setupPageEvents(pageId) {
   }
   if (pageId === 'loops') {
     setupLoopsEvents();
+  }
+  if (pageId === 'arrays') { 
+    setupArraysEvents();
   }
 }
 
@@ -327,6 +348,50 @@ function setupLoopsEvents() {
   }
 }
 
+function setupArraysEvents() {
+  const subNavBtns = document.querySelectorAll('.sub-nav-btn');
+  subNavBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const subpage = btn.getAttribute('data-subpage');
+      if (subpage) {
+        currentArraysSubpage = subpage;
+        window.currentArraysSubpage = subpage;
+        syncGlobalState();
+        loadPage('arrays');
+      }
+    });
+  });
+
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const exId = parseInt(btn.getAttribute('data-ex-id'));
+      if (exId) {
+        currentArraysExercise = exId;
+        window.currentArraysExercise = exId;
+        syncGlobalState();
+        loadPage('arrays');
+      }
+    });
+  });
+
+  const copyBtn = document.querySelector('.copy-code-btn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      const code = copyBtn.getAttribute('data-code');
+      if (code) {
+        navigator.clipboard.writeText(code.replace(/&quot;/g, '"')).then(() => {
+          const originalText = copyBtn.innerText;
+          copyBtn.innerText = '✓ Copiado!';
+          setTimeout(() => {
+            copyBtn.innerText = originalText;
+          }, 1800);
+        });
+      }
+    });
+  }
+}
+
 // Função para carregar scripts dinamicamente
 function loadScripts(scripts, callback) {
   let loaded = 0;
@@ -369,7 +434,8 @@ function checkFunctionsReady() {
          typeof renderConditionalsPage !== 'undefined' &&
          typeof renderConceitosRepeticao !== 'undefined' &&
          typeof renderExerciciosRepeticao !== 'undefined' &&
-         typeof renderLoopsPage !== 'undefined';
+         typeof renderLoopsPage !== 'undefined' &&
+         typeof renderArraysPage !== 'undefined'; 
 }
 
 // Função para configurar as páginas após carregar os scripts
@@ -381,6 +447,7 @@ function setupPagesAfterLoad() {
   pages.operators = renderOperatorsPage;
   pages.conditionals = renderConditionalsPage;
   pages.loops = renderLoopsPage;
+  pages.arrays = renderArraysPage;
   
   // Aplica o tema da linguagem (função do core.js)
   if (typeof applyLanguageTheme === 'function') {

@@ -146,7 +146,7 @@ function renderAmbientePage() {
                         ⬇️ Download
                     </a>
                     <a href="${langData.compiladorOnline}" target="_blank" class="btn-download-ambiente">
-                        🛜 Compilador Online
+                        🌐 Compilador Online
                     </a>
                     <a href="${langData.documentacao}" target="_blank" class="btn-docs-ambiente">
                         📚 Documentação

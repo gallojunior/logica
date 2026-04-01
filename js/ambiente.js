@@ -150,7 +150,37 @@ public class Main {
         System.out.println("Olá, " + nome + "!");
     }
 }`
-    }
+    },
+    go: {
+  nome: "Go",
+  icone: "🐹",
+  descricao: "Linguagem de programação criada pela Google, conhecida por sua simplicidade, concorrência nativa e excelente desempenho.",
+  sistemas: ["Windows", "macOS", "Linux"],
+  downloadLink: "https://go.dev/dl/",
+  documentacao: "https://go.dev/doc/",
+  compiladorOnline: "https://go.dev/play/",
+  instalacao: [
+    "Acesse https://go.dev/dl/",
+    "Baixe o instalador para o seu sistema operacional",
+    "Execute o instalador e siga as instruções padrão",
+    "Após instalar, abra o terminal e digite 'go version' para confirmar"
+  ],
+  dicas: [
+    "Use o VS Code com a extensão oficial Go",
+    "Execute programas com 'go run arquivo.go'",
+    "Compile com 'go build arquivo.go'",
+    "Formate automaticamente seu código com 'go fmt'"
+  ],
+  exemplo: `package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Olá, mundo! Bem-vindo ao Go!")
+    nome := "Aluno"
+    fmt.Printf("Olá, %s!\\n", nome)
+}`
+}
 };
 
 // Estado da página ambiente

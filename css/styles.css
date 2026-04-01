@@ -101,11 +101,16 @@ body[data-language="java"] {
   --active-text: #b07219;
 }
 
-/* Tema Escuro - Java */
-body.dark-theme[data-language="java"] {
-  --hover-bg: rgba(176, 114, 25, 0.2);
-  --active-bg: rgba(176, 114, 25, 0.25);
-  --active-text: #e76f00;
+/* Go */
+body[data-language="go"] {
+  --lang-primary: #00ADD8;
+  --lang-secondary: #5DC9E2;
+  --lang-gradient: linear-gradient(135deg, #00ADD8, #5DC9E2);
+  --lang-light: #e0f7ff;
+  --lang-dark: #007d9e;
+  --hover-bg: rgba(0, 173, 216, 0.1);
+  --active-bg: rgba(0, 173, 216, 0.15);
+  --active-text: #00ADD8;
 }
 
 /* Tema Escuro - Ajustes para melhor contraste */
@@ -134,25 +139,6 @@ body.dark-theme {
   --shadow-sm: rgba(0, 0, 0, 0.3);
 }
 
-/* Tema Escuro - Ajustes específicos para cada linguagem */
-body.dark-theme[data-language="javascript"] {
-  --hover-bg: rgba(247, 223, 30, 0.2);
-  --active-bg: rgba(247, 223, 30, 0.25);
-  --active-text: #f7df1e;
-}
-
-body.dark-theme[data-language="csharp"] {
-  --hover-bg: rgba(155, 77, 150, 0.2);
-  --active-bg: rgba(155, 77, 150, 0.25);
-  --active-text: #b77eb3;
-}
-
-body.dark-theme[data-language="python"] {
-  --hover-bg: rgba(55, 118, 171, 0.2);
-  --active-bg: rgba(55, 118, 171, 0.25);
-  --active-text: #7ab7ef;
-}
-
 /* Portugol no tema escuro */
 body.dark-theme[data-language="portugol"] {
   --hover-bg: rgba(46, 125, 50, 0.2);
@@ -160,8 +146,41 @@ body.dark-theme[data-language="portugol"] {
   --active-text: #81c784;
 }
 
-/* ==================== RESTO DO SEU CSS PERMANECE IGUAL ==================== */
-/* ... todo o restante do seu CSS continua aqui ... */
+/* Tema Escuro - Javascript */
+body.dark-theme[data-language="javascript"] {
+  --hover-bg: rgba(247, 223, 30, 0.2);
+  --active-bg: rgba(247, 223, 30, 0.25);
+  --active-text: #f7df1e;
+}
+
+/* Tema Escuro - C# */
+body.dark-theme[data-language="csharp"] {
+  --hover-bg: rgba(155, 77, 150, 0.2);
+  --active-bg: rgba(155, 77, 150, 0.25);
+  --active-text: #b77eb3;
+}
+
+/* Tema Escuro - Python */
+body.dark-theme[data-language="python"] {
+  --hover-bg: rgba(55, 118, 171, 0.2);
+  --active-bg: rgba(55, 118, 171, 0.25);
+  --active-text: #7ab7ef;
+}
+
+/* Tema Escuro - Java */
+body.dark-theme[data-language="java"] {
+  --hover-bg: rgba(176, 114, 25, 0.2);
+  --active-bg: rgba(176, 114, 25, 0.25);
+  --active-text: #e76f00;
+}
+
+/* Tema escuro - GO */
+body.dark-theme[data-language="go"] {
+  --hover-bg: rgba(0, 173, 216, 0.2);
+  --active-bg: rgba(0, 173, 216, 0.25);
+  --active-text: #5DC9E2;
+}
+
 
 /* ==================== ESTILOS GLOBAIS ==================== */
 body {

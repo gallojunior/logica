@@ -41,7 +41,7 @@ function saveCurrentPageState() {
   // Salva a página atual (vinda do main.js)
   const currentPageId = window.currentPage || 'home';
   localStorage.setItem('lastPage', currentPageId);
-  
+
   // Salva os estados específicos de cada página
   localStorage.setItem('operators_subpage', window.currentOperadorSubpage || 'conceitos');
   localStorage.setItem('operators_exercise', window.currentOperadorExercise || 1);
@@ -60,7 +60,7 @@ function saveCurrentPageState() {
 // Função para restaurar o estado da página
 function restorePageState() {
   const lastPage = localStorage.getItem('lastPage') || 'home';
-  
+
   // Restaura os estados específicos
   window.currentOperadorSubpage = localStorage.getItem('operators_subpage') || 'conceitos';
   window.currentOperadorExercise = parseInt(localStorage.getItem('operators_exercise')) || 1;
@@ -68,42 +68,42 @@ function restorePageState() {
   window.currentCondicionalExercise = parseInt(localStorage.getItem('conditionals_exercise')) || 1;
   window.currentRepeticaoSubpage = localStorage.getItem('loops_subpage') || 'conceitos';
   window.currentRepeticaoExercise = parseInt(localStorage.getItem('loops_exercise')) || 1;
-  
+
   return lastPage;
 }
 
 function initLanguageSelector() {
   const languageSelect = document.getElementById('language-select');
   if (!languageSelect) return;
-  
+
   const savedLanguage = localStorage.getItem('language');
   if (savedLanguage) {
     currentLanguage = savedLanguage;
     languageSelect.value = savedLanguage;
   }
-  
+
   // Remove listener antigo se existir
   if (languageSelect._changeListener) {
     languageSelect.removeEventListener('change', languageSelect._changeListener);
   }
-  
+
   const changeListener = (e) => {
     const selectedLanguage = e.target.value;
     if (selectedLanguage === currentLanguage) return;
-    
+
     // SALVA O ESTADO ANTES DE TROCAR A LINGUAGEM
     saveCurrentPageState();
-    
+
     currentLanguage = selectedLanguage;
     localStorage.setItem('language', selectedLanguage);
-    
+
     // Limpa o estado das páginas
     clearLanguageState();
-    
+
     // Recarrega a página
     window.location.reload();
   };
-  
+
   languageSelect.addEventListener('change', changeListener);
   languageSelect._changeListener = changeListener;
 }
@@ -124,7 +124,7 @@ function clearLanguageState() {
   delete window.renderFilesPage;
   delete window.renderConceitosArquivos;
   delete window.renderExerciciosArquivos;
-  
+
   // Remove os scripts antigos
   const oldScripts = document.querySelectorAll('script[data-lang]');
   oldScripts.forEach(script => script.remove());
@@ -134,10 +134,10 @@ function loadLanguageScripts(language) {
   // Remove scripts antigos
   const oldScripts = document.querySelectorAll('script[data-lang]');
   oldScripts.forEach(script => script.remove());
-  
+
   const scripts = [];
-  
-if (language === 'portugol') {
+
+  if (language === 'portugol') {
     scripts.push('./js/portugol/operators.js');
     scripts.push('./js/portugol/conditions.js');
     scripts.push('./js/portugol/loops.js');
@@ -177,6 +177,14 @@ if (language === 'portugol') {
     scripts.push('./js/java/arrays.js');
     scripts.push('./js/java/functions.js');
     scripts.push('./js/java/files.js');
+  } else if (language === 'go') {
+    scripts.push('./js/go/operators.js');
+    scripts.push('./js/go/conditions.js');
+    scripts.push('./js/go/loops.js');
+    scripts.push('./js/go/intro.js');
+    scripts.push('./js/go/arrays.js');
+    scripts.push('./js/go/functions.js');
+    scripts.push('./js/go/files.js');
   }
   scripts.push('./js/ambiente.js');
 
@@ -220,6 +228,13 @@ const languageColors = {
     gradient: "linear-gradient(135deg, #b07219, #e76f00)",
     light: "#fff3e0",
     dark: "#b85c1a"
+  },
+  go: {
+    primary: "#00ADD8",
+    secondary: "#5DC9E2",
+    gradient: "linear-gradient(135deg, #00ADD8, #5DC9E2)",
+    light: "#e0f7ff",
+    dark: "#007d9e"
   }
 };
 
@@ -229,17 +244,17 @@ function getLanguageColor() {
 
 function applyLanguageTheme() {
   const colors = getLanguageColor();
-  
+
   // Aplica variáveis CSS para temas dinâmicos
   document.documentElement.style.setProperty('--lang-primary', colors.primary);
   document.documentElement.style.setProperty('--lang-secondary', colors.secondary);
   document.documentElement.style.setProperty('--lang-gradient', colors.gradient);
   document.documentElement.style.setProperty('--lang-light', colors.light);
   document.documentElement.style.setProperty('--lang-dark', colors.dark);
-  
+
   // Adiciona data attribute no body para CSS
   document.body.setAttribute('data-language', currentLanguage);
-  
+
   // Atualiza o favicon
   updateFavicon(colors.primary);
 }
@@ -249,13 +264,13 @@ function updateFavicon(color) {
   canvas.width = 32;
   canvas.height = 32;
   const ctx = canvas.getContext('2d');
-  
+
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, 32, 32);
   ctx.fillStyle = 'white';
   ctx.font = 'bold 16px monospace';
   ctx.fillText(getLanguageShortName(), 6, 24);
-  
+
   let favicon = document.querySelector('link[rel="icon"]');
   if (!favicon) {
     favicon = document.createElement('link');
@@ -266,12 +281,13 @@ function updateFavicon(color) {
 }
 
 function getLanguageShortName() {
-  switch(currentLanguage) {
-    case 'portugol': return 'P';
+  switch (currentLanguage) {
+    case 'portugol': return 'Pt';
     case 'javascript': return 'JS';
     case 'csharp': return 'C#';
     case 'python': return 'Py';
     case 'java': return 'J';
+    case 'go': return 'Go';
     default: return 'P';
   }
 }
@@ -280,40 +296,37 @@ function getLanguageShortName() {
 
 // Função para obter o nome da linguagem para exibição
 function getLanguageDisplayName() {
-  switch(currentLanguage) {
-    case 'portugol':
-      return 'Portugol Studio';
-    case 'javascript':
-      return 'JavaScript';
-    case 'csharp':
-      return 'C#';
-    case 'python':
-      return 'Python';
-    case 'java':
-      return 'Java';
-    default:
-      return currentLanguage;
+  switch (currentLanguage) {
+    case 'portugol': return 'Portugol Studio';
+    case 'javascript': return 'JavaScript';
+    case 'csharp': return 'C#';
+    case 'python': return 'Python';
+    case 'java': return 'Java';
+    case 'go': return 'Go';
+    default: return currentLanguage;
   }
 }
 
 function getLanguageDescription() {
-  switch(currentLanguage) {
+  switch (currentLanguage) {
     case 'portugol': return 'estruturada em português';
     case 'javascript': return 'JavaScript, a mais popular do mundo';
     case 'csharp': return 'C#, a linguagem moderna da Microsoft';
     case 'python': return 'Python, a linguagem mais versátil e amigável';
     case 'java': return 'Java, a linguagem robusta e multiplataforma';
+    case 'go': return 'Go, a linguagem concisa e eficiente da Google';
     default: return currentLanguage;
   }
 }
 
 function getArraysText() {
-  switch(currentLanguage) {
+  switch (currentLanguage) {
     case 'portugol': return 'Vetores e Matrizes';
     case 'javascript': return 'Arrays e Objetos';
     case 'csharp': return 'Arrays e Listas';
     case 'python': return 'Listas, Tuplas e Dicionários';
     case 'java': return 'Arrays e ArrayList';
+    case 'go': return 'Slices e Arrays';
     default: return 'Arrays';
   }
 }

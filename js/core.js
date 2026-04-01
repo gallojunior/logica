@@ -160,6 +160,13 @@ if (language === 'portugol') {
     scripts.push('./js/python/intro.js');
     scripts.push('./js/python/arrays.js');
     scripts.push('./js/python/functions.js');
+  } else if (language === 'java') {
+    scripts.push('./js/java/operators.js');
+    scripts.push('./js/java/conditions.js');
+    scripts.push('./js/java/loops.js');
+    scripts.push('./js/java/intro.js');
+    scripts.push('./js/java/arrays.js');
+    scripts.push('./js/java/functions.js');
   }
   scripts.push('./js/ambiente.js');
 
@@ -167,6 +174,7 @@ if (language === 'portugol') {
 }
 
 // ========== CONFIGURAÇÕES DE CORES POR LINGUAGEM ==========
+// Atualize languageColors
 const languageColors = {
   portugol: {
     primary: "#10b981",
@@ -195,6 +203,13 @@ const languageColors = {
     gradient: "linear-gradient(135deg, #3776ab, #ffd43b)",
     light: "#e6f4ff",
     dark: "#1e40af"
+  },
+  java: {
+    primary: "#b07219",
+    secondary: "#e76f00",
+    gradient: "linear-gradient(135deg, #b07219, #e76f00)",
+    light: "#fff3e0",
+    dark: "#b85c1a"
   }
 };
 
@@ -246,6 +261,7 @@ function getLanguageShortName() {
     case 'javascript': return 'JS';
     case 'csharp': return 'C#';
     case 'python': return 'Py';
+    case 'java': return 'J';
     default: return 'P';
   }
 }
@@ -263,6 +279,8 @@ function getLanguageDisplayName() {
       return 'C#';
     case 'python':
       return 'Python';
+    case 'java':
+      return 'Java';
     default:
       return currentLanguage;
   }
@@ -274,6 +292,7 @@ function getLanguageDescription() {
     case 'javascript': return 'JavaScript, a mais popular do mundo';
     case 'csharp': return 'C#, a linguagem moderna da Microsoft';
     case 'python': return 'Python, a linguagem mais versátil e amigável';
+    case 'java': return 'Java, a linguagem robusta e multiplataforma';
     default: return currentLanguage;
   }
 }
@@ -284,6 +303,7 @@ function getArraysText() {
     case 'javascript': return 'Arrays e Objetos';
     case 'csharp': return 'Arrays e Listas';
     case 'python': return 'Listas, Tuplas e Dicionários';
+    case 'java': return 'Arrays e ArrayList';
     default: return 'Arrays';
   }
 }

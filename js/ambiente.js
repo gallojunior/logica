@@ -119,6 +119,37 @@ print("Olá, mundo! Bem-vindo ao Python!")
 # Declarando variáveis
 nome = "Aluno"
 print(f"Olá, {nome}!")`
+    },
+    java: {
+        nome: "Java",
+        icone: "☕",
+        descricao: "Linguagem robusta, orientada a objetos, amplamente usada em empresas, aplicações desktop, web e Android.",
+        sistemas: ["Windows", "macOS", "Linux"],
+        downloadLink: "https://www.oracle.com/java/technologies/downloads/",
+        documentacao: "https://docs.oracle.com/en/java/",
+        compiladorOnline: "https://www.online-java.com/",
+        instalacao: [
+            "Acesse https://www.oracle.com/java/technologies/downloads/",
+            "Baixe o JDK (Java Development Kit) mais recente",
+            "Execute o instalador e siga as instruções padrão",
+            "Configure a variável de ambiente JAVA_HOME (veja a documentação para seu SO)",
+            "Após instalar, abra o terminal e digite 'java -version' para confirmar"
+        ],
+        dicas: [
+            "Use IntelliJ IDEA, Eclipse ou VS Code com extensões Java",
+            "O código Java precisa ser compilado: 'javac Arquivo.java' e executado: 'java Arquivo'",
+            "O nome da classe deve ser igual ao nome do arquivo",
+            "Java é multiplataforma: escreva uma vez, execute em qualquer lugar!"
+        ],
+        exemplo: `// Meu primeiro programa em Java
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Olá, mundo! Bem-vindo ao Java!");
+        
+        String nome = "Aluno";
+        System.out.println("Olá, " + nome + "!");
+    }
+}`
     }
 };
 

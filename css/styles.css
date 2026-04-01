@@ -89,6 +89,25 @@ body[data-language="portugol"] {
   --active-text: #2e7d32;
 }
 
+/* Java */
+body[data-language="java"] {
+  --lang-primary: #b07219;
+  --lang-secondary: #e76f00;
+  --lang-gradient: linear-gradient(135deg, #b07219, #e76f00);
+  --lang-light: #fff3e0;
+  --lang-dark: #b85c1a;
+  --hover-bg: rgba(176, 114, 25, 0.1);
+  --active-bg: rgba(176, 114, 25, 0.15);
+  --active-text: #b07219;
+}
+
+/* Tema Escuro - Java */
+body.dark-theme[data-language="java"] {
+  --hover-bg: rgba(176, 114, 25, 0.2);
+  --active-bg: rgba(176, 114, 25, 0.25);
+  --active-text: #e76f00;
+}
+
 /* Tema Escuro - Ajustes para melhor contraste */
 body.dark-theme {
   --bg-primary: #0f172a;

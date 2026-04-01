@@ -12,6 +12,8 @@ let currentArraysSubpage = 'conceitos';
 let currentArraysExercise = 1;
 let currentFunctionsSubpage = 'conceitos';
 let currentFunctionsExercise = 1;
+let currentFilesSubpage = 'conceitos';
+let currentFilesExercise = 1;
 
 // EXPORTA AS VARIÁVEIS PARA O ESCOPO GLOBAL (para o core.js acessar)
 window.currentPage = currentPage;
@@ -25,6 +27,8 @@ window.currentArraysSubpage = currentArraysSubpage;
 window.currentArraysExercise = currentArraysExercise;
 window.currentFunctionsSubpage = currentFunctionsSubpage;
 window.currentFunctionsExercise = currentFunctionsExercise;
+window.currentFilesSubpage = currentFilesSubpage;
+window.currentFilesExercise = currentFilesExercise;
 
 // Função para sincronizar as variáveis globais com as locais
 function syncGlobalState() {
@@ -37,6 +41,8 @@ function syncGlobalState() {
   window.currentRepeticaoExercise = currentRepeticaoExercise;
   window.currentArraysSubpage = currentArraysSubpage;
   window.currentArraysExercise = currentArraysExercise;
+  window.currentFilesSubpage = currentFilesSubpage;
+  window.currentFilesExercise = currentFilesExercise;
 }
 
 // Função para restaurar o estado salvo
@@ -107,6 +113,18 @@ function restoreSavedState() {
     currentFunctionsExercise = parseInt(functionsExercise);
     window.currentFunctionsExercise = currentFunctionsExercise;
   }
+
+  const filesSubpage = localStorage.getItem('files_subpage');
+  if (filesSubpage) {
+    currentFilesSubpage = filesSubpage;
+    window.currentFilesSubpage = filesSubpage;
+  }
+
+  const filesExercise = localStorage.getItem('files_exercise');
+  if (filesExercise) {
+    currentFilesExercise = parseInt(filesExercise);
+    window.currentFilesExercise = currentFilesExercise;
+  }
 }
 
 // Mapeamento de páginas
@@ -118,7 +136,8 @@ let pages = {
   conditionals: null,
   loops: null,
   arrays: null,
-  functions: null
+  functions: null,
+  files: null
 };
 
 function setActiveNavItem(pageId) {
@@ -195,6 +214,9 @@ function setupPageEvents(pageId) {
   }
   if (pageId === 'functions') {
     setupFunctionsEvents();
+  }
+  if (pageId === 'files') {
+    setupFilesEvents();
   }
 }
 
@@ -455,6 +477,50 @@ function setupFunctionsEvents() {
   }
 }
 
+function setupFilesEvents() {
+  const subNavBtns = document.querySelectorAll('.sub-nav-btn');
+  subNavBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const subpage = btn.getAttribute('data-subpage');
+      if (subpage) {
+        currentFilesSubpage = subpage;
+        window.currentFilesSubpage = subpage;
+        syncGlobalState();
+        loadPage('files');
+      }
+    });
+  });
+
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const exId = parseInt(btn.getAttribute('data-ex-id'));
+      if (exId) {
+        currentFilesExercise = exId;
+        window.currentFilesExercise = exId;
+        syncGlobalState();
+        loadPage('files');
+      }
+    });
+  });
+
+  const copyBtn = document.querySelector('.copy-code-btn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      const code = copyBtn.getAttribute('data-code');
+      if (code) {
+        navigator.clipboard.writeText(code.replace(/&quot;/g, '"')).then(() => {
+          const originalText = copyBtn.innerText;
+          copyBtn.innerText = '✓ Copiado!';
+          setTimeout(() => {
+            copyBtn.innerText = originalText;
+          }, 1800);
+        });
+      }
+    });
+  }
+}
+
 // Função para carregar scripts dinamicamente
 function loadScripts(scripts, callback) {
   let loaded = 0;
@@ -499,7 +565,9 @@ function checkFunctionsReady() {
     typeof renderExerciciosRepeticao !== 'undefined' &&
     typeof renderLoopsPage !== 'undefined' &&
     typeof renderArraysPage !== 'undefined' &&
-    typeof renderFunctionsPage !== 'undefined';
+    typeof renderFunctionsPage !== 'undefined' &&
+    typeof renderFilesPage !== 'undefined';
+
 }
 
 // Função para configurar as páginas após carregar os scripts
@@ -513,6 +581,7 @@ function setupPagesAfterLoad() {
   pages.loops = renderLoopsPage;
   pages.arrays = renderArraysPage;
   pages.functions = renderFunctionsPage;
+  pages.files = renderFilesPage;
 
   // Aplica o tema da linguagem (função do core.js)
   if (typeof applyLanguageTheme === 'function') {

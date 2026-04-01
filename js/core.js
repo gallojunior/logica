@@ -53,6 +53,8 @@ function saveCurrentPageState() {
   localStorage.setItem('arrays_exercise', window.currentArraysExercise || 1);
   localStorage.setItem('functions_subpage', window.currentFunctionsSubpage || 'conceitos');
   localStorage.setItem('functions_exercise', window.currentFunctionsExercise || 1);
+  localStorage.setItem('files_subpage', window.currentFilesSubpage || 'conceitos');
+  localStorage.setItem('files_exercise', window.currentFilesExercise || 1);
 }
 
 // Função para restaurar o estado da página
@@ -119,6 +121,9 @@ function clearLanguageState() {
   delete window.renderConceitosRepeticao;
   delete window.renderExerciciosRepeticao;
   delete window.renderLoopsPage;
+  delete window.renderFilesPage;
+  delete window.renderConceitosArquivos;
+  delete window.renderExerciciosArquivos;
   
   // Remove os scripts antigos
   const oldScripts = document.querySelectorAll('script[data-lang]');
@@ -139,6 +144,7 @@ if (language === 'portugol') {
     scripts.push('./js/portugol/intro.js');
     scripts.push('./js/portugol/arrays.js');
     scripts.push('./js/portugol/functions.js');
+    scripts.push('./js/portugol/files.js');
   } else if (language === 'javascript') {
     scripts.push('./js/javascript/operators.js');
     scripts.push('./js/javascript/conditions.js');
@@ -146,6 +152,7 @@ if (language === 'portugol') {
     scripts.push('./js/javascript/intro.js');
     scripts.push('./js/javascript/arrays.js');
     scripts.push('./js/javascript/functions.js');
+    scripts.push('./js/javascript/files.js');
   } else if (language === 'csharp') {
     scripts.push('./js/csharp/operators.js');
     scripts.push('./js/csharp/conditions.js');
@@ -153,6 +160,7 @@ if (language === 'portugol') {
     scripts.push('./js/csharp/intro.js');
     scripts.push('./js/csharp/arrays.js');
     scripts.push('./js/csharp/functions.js');
+    scripts.push('./js/csharp/files.js');
   } else if (language === 'python') {
     scripts.push('./js/python/operators.js');
     scripts.push('./js/python/conditions.js');
@@ -160,6 +168,7 @@ if (language === 'portugol') {
     scripts.push('./js/python/intro.js');
     scripts.push('./js/python/arrays.js');
     scripts.push('./js/python/functions.js');
+    scripts.push('./js/python/files.js');
   } else if (language === 'java') {
     scripts.push('./js/java/operators.js');
     scripts.push('./js/java/conditions.js');
@@ -167,6 +176,7 @@ if (language === 'portugol') {
     scripts.push('./js/java/intro.js');
     scripts.push('./js/java/arrays.js');
     scripts.push('./js/java/functions.js');
+    scripts.push('./js/java/files.js');
   }
   scripts.push('./js/ambiente.js');
 

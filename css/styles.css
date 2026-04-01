@@ -233,6 +233,7 @@ body.dark-theme::-webkit-scrollbar-thumb:hover {
   display: flex;
   align-items: center;
   gap: 12px;
+  text-decoration: none;
 }
 
 .logo-icon {
@@ -286,6 +287,11 @@ body.dark-theme .logo-text {
 }
 
 .nav-links a:hover {
+  color: var(--lang-primary);
+  border-bottom-color: var(--lang-primary);
+}
+
+.nav-links a.active {
   color: var(--lang-primary);
   border-bottom-color: var(--lang-primary);
 }

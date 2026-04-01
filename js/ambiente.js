@@ -180,6 +180,35 @@ func main() {
     nome := "Aluno"
     fmt.Printf("Olá, %s!\\n", nome)
 }`
+},
+rust: {
+  nome: "Rust",
+  icone: "🦀",
+  descricao: "Linguagem de programação de sistemas focada em segurança, velocidade e concorrência. Possui gerenciamento de memória sem garbage collector, garantindo segurança e performance.",
+  sistemas: ["Windows", "macOS", "Linux"],
+  downloadLink: "https://www.rust-lang.org/tools/install",
+  documentacao: "https://doc.rust-lang.org/book/",
+  compiladorOnline: "https://play.rust-lang.org/",
+  instalacao: [
+    "Acesse https://www.rust-lang.org/tools/install",
+    "Siga as instruções para seu sistema operacional (geralmente via rustup)",
+    "Para Linux/macOS: execute 'curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh'",
+    "Para Windows: baixe e execute o instalador rustup-init.exe",
+    "Após instalar, abra o terminal e digite 'rustc --version' para confirmar"
+  ],
+  dicas: [
+    "Use VS Code com a extensão 'rust-analyzer' para melhor suporte",
+    "Compile com 'rustc arquivo.rs' ou use 'cargo run' para projetos",
+    "Cargo é o gerenciador de pacotes e build system do Rust",
+    "A linguagem enfatiza segurança de memória sem penalidade de performance"
+  ],
+  exemplo: `// Meu primeiro programa em Rust
+fn main() {
+    println!("Olá, mundo! Bem-vindo ao Rust!");
+    
+    let nome = "Aluno";
+    println!("Olá, {}!", nome);
+}`
 }
 };
 

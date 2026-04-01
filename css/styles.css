@@ -113,6 +113,18 @@ body[data-language="go"] {
   --active-text: #00ADD8;
 }
 
+/* Rust */
+body[data-language="rust"] {
+  --lang-primary: #ce412b;
+  --lang-secondary: #f74c00;
+  --lang-gradient: linear-gradient(135deg, #ce412b, #f74c00);
+  --lang-light: #ffe5e0;
+  --lang-dark: #b33a26;
+  --hover-bg: rgba(206, 65, 43, 0.1);
+  --active-bg: rgba(206, 65, 43, 0.15);
+  --active-text: #ce412b;
+}
+
 /* Tema Escuro - Ajustes para melhor contraste */
 body.dark-theme {
   --bg-primary: #0f172a;
@@ -181,6 +193,12 @@ body.dark-theme[data-language="go"] {
   --active-text: #5DC9E2;
 }
 
+/* Tema Escuro - Rust */
+body.dark-theme[data-language="rust"] {
+  --hover-bg: rgba(206, 65, 43, 0.2);
+  --active-bg: rgba(206, 65, 43, 0.25);
+  --active-text: #f74c00;
+}
 
 /* ==================== ESTILOS GLOBAIS ==================== */
 body {

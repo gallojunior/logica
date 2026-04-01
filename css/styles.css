@@ -125,6 +125,19 @@ body[data-language="rust"] {
   --active-text: #ce412b;
 }
 
+/* Ruby */
+body[data-language="ruby"] {
+  --lang-primary: #CC342D;
+  --lang-secondary: #9B2C26;
+  --lang-gradient: linear-gradient(135deg, #CC342D, #9B2C26);
+  --lang-light: #ffe6e5;
+  --lang-dark: #9B2C26;
+  --hover-bg: rgba(204, 52, 45, 0.1);
+  --active-bg: rgba(204, 52, 45, 0.15);
+  --active-text: #CC342D;
+}
+
+
 /* Tema Escuro - Ajustes para melhor contraste */
 body.dark-theme {
   --bg-primary: #0f172a;
@@ -198,6 +211,13 @@ body.dark-theme[data-language="rust"] {
   --hover-bg: rgba(206, 65, 43, 0.2);
   --active-bg: rgba(206, 65, 43, 0.25);
   --active-text: #f74c00;
+}
+
+/* Tema escuro - Ruby */
+body.dark-theme[data-language="ruby"] {
+  --hover-bg: rgba(204, 52, 45, 0.2);
+  --active-bg: rgba(204, 52, 45, 0.25);
+  --active-text: #e55a52;
 }
 
 /* ==================== ESTILOS GLOBAIS ==================== */

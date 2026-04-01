@@ -209,6 +209,32 @@ fn main() {
     let nome = "Aluno";
     println!("Olá, {}!", nome);
 }`
+},
+ruby: {
+    nome: "Ruby",
+    icone: "💎",
+    descricao: "Linguagem dinâmica, elegante e produtiva, famosa pelo framework Ruby on Rails. Ideal para desenvolvimento web e automação.",
+    sistemas: ["Windows", "macOS", "Linux"],
+    downloadLink: "https://www.ruby-lang.org/pt/downloads/",
+    documentacao: "https://www.ruby-lang.org/pt/documentation/",
+    compiladorOnline: "https://www.mycompiler.io/pt/new/ruby",
+    instalacao: [
+        "Acesse https://www.ruby-lang.org/pt/downloads/",
+        "Escolha o instalador para seu sistema operacional (Windows: RubyInstaller; macOS: já vem instalado ou use Homebrew; Linux: use o gerenciador de pacotes)",
+        "Execute o instalador e siga as instruções",
+        "Após instalar, abra o terminal e digite 'ruby -v' para confirmar a versão"
+    ],
+    dicas: [
+        "Use o IRB (Interactive Ruby) para testar comandos rapidamente: 'irb' no terminal",
+        "Execute programas com 'ruby arquivo.rb'",
+        "Instale gems (bibliotecas) com 'gem install nome_da_gem'",
+        "O Ruby on Rails é um framework web poderoso para construir aplicações rapidamente"
+    ],
+    exemplo: `# Meu primeiro programa em Ruby
+puts "Olá, mundo! Bem-vindo ao Ruby!"
+
+nome = "Aluno"
+puts "Olá, #{nome}!"`
 }
 };
 

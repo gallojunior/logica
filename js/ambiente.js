@@ -152,26 +152,26 @@ public class Main {
 }`
     },
     go: {
-  nome: "Go",
-  icone: "🐹",
-  descricao: "Linguagem de programação criada pela Google, conhecida por sua simplicidade, concorrência nativa e excelente desempenho.",
-  sistemas: ["Windows", "macOS", "Linux"],
-  downloadLink: "https://go.dev/dl/",
-  documentacao: "https://go.dev/doc/",
-  compiladorOnline: "https://go.dev/play/",
-  instalacao: [
-    "Acesse https://go.dev/dl/",
-    "Baixe o instalador para o seu sistema operacional",
-    "Execute o instalador e siga as instruções padrão",
-    "Após instalar, abra o terminal e digite 'go version' para confirmar"
-  ],
-  dicas: [
-    "Use o VS Code com a extensão oficial Go",
-    "Execute programas com 'go run arquivo.go'",
-    "Compile com 'go build arquivo.go'",
-    "Formate automaticamente seu código com 'go fmt'"
-  ],
-  exemplo: `package main
+        nome: "Go",
+        icone: "🐹",
+        descricao: "Linguagem de programação criada pela Google, conhecida por sua simplicidade, concorrência nativa e excelente desempenho.",
+        sistemas: ["Windows", "macOS", "Linux"],
+        downloadLink: "https://go.dev/dl/",
+        documentacao: "https://go.dev/doc/",
+        compiladorOnline: "https://go.dev/play/",
+        instalacao: [
+            "Acesse https://go.dev/dl/",
+            "Baixe o instalador para o seu sistema operacional",
+            "Execute o instalador e siga as instruções padrão",
+            "Após instalar, abra o terminal e digite 'go version' para confirmar"
+        ],
+        dicas: [
+            "Use o VS Code com a extensão oficial Go",
+            "Execute programas com 'go run arquivo.go'",
+            "Compile com 'go build arquivo.go'",
+            "Formate automaticamente seu código com 'go fmt'"
+        ],
+        exemplo: `package main
 
 import "fmt"
 
@@ -180,62 +180,90 @@ func main() {
     nome := "Aluno"
     fmt.Printf("Olá, %s!\\n", nome)
 }`
-},
-rust: {
-  nome: "Rust",
-  icone: "🦀",
-  descricao: "Linguagem de programação de sistemas focada em segurança, velocidade e concorrência. Possui gerenciamento de memória sem garbage collector, garantindo segurança e performance.",
-  sistemas: ["Windows", "macOS", "Linux"],
-  downloadLink: "https://www.rust-lang.org/tools/install",
-  documentacao: "https://doc.rust-lang.org/book/",
-  compiladorOnline: "https://play.rust-lang.org/",
-  instalacao: [
-    "Acesse https://www.rust-lang.org/tools/install",
-    "Siga as instruções para seu sistema operacional (geralmente via rustup)",
-    "Para Linux/macOS: execute 'curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh'",
-    "Para Windows: baixe e execute o instalador rustup-init.exe",
-    "Após instalar, abra o terminal e digite 'rustc --version' para confirmar"
-  ],
-  dicas: [
-    "Use VS Code com a extensão 'rust-analyzer' para melhor suporte",
-    "Compile com 'rustc arquivo.rs' ou use 'cargo run' para projetos",
-    "Cargo é o gerenciador de pacotes e build system do Rust",
-    "A linguagem enfatiza segurança de memória sem penalidade de performance"
-  ],
-  exemplo: `// Meu primeiro programa em Rust
+    },
+    rust: {
+        nome: "Rust",
+        icone: "🦀",
+        descricao: "Linguagem de programação de sistemas focada em segurança, velocidade e concorrência. Possui gerenciamento de memória sem garbage collector, garantindo segurança e performance.",
+        sistemas: ["Windows", "macOS", "Linux"],
+        downloadLink: "https://www.rust-lang.org/tools/install",
+        documentacao: "https://doc.rust-lang.org/book/",
+        compiladorOnline: "https://play.rust-lang.org/",
+        instalacao: [
+            "Acesse https://www.rust-lang.org/tools/install",
+            "Siga as instruções para seu sistema operacional (geralmente via rustup)",
+            "Para Linux/macOS: execute 'curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh'",
+            "Para Windows: baixe e execute o instalador rustup-init.exe",
+            "Após instalar, abra o terminal e digite 'rustc --version' para confirmar"
+        ],
+        dicas: [
+            "Use VS Code com a extensão 'rust-analyzer' para melhor suporte",
+            "Compile com 'rustc arquivo.rs' ou use 'cargo run' para projetos",
+            "Cargo é o gerenciador de pacotes e build system do Rust",
+            "A linguagem enfatiza segurança de memória sem penalidade de performance"
+        ],
+        exemplo: `// Meu primeiro programa em Rust
 fn main() {
     println!("Olá, mundo! Bem-vindo ao Rust!");
     
     let nome = "Aluno";
     println!("Olá, {}!", nome);
 }`
-},
-ruby: {
-    nome: "Ruby",
-    icone: "💎",
-    descricao: "Linguagem dinâmica, elegante e produtiva, famosa pelo framework Ruby on Rails. Ideal para desenvolvimento web e automação.",
-    sistemas: ["Windows", "macOS", "Linux"],
-    downloadLink: "https://www.ruby-lang.org/pt/downloads/",
-    documentacao: "https://www.ruby-lang.org/pt/documentation/",
-    compiladorOnline: "https://www.mycompiler.io/pt/new/ruby",
-    instalacao: [
-        "Acesse https://www.ruby-lang.org/pt/downloads/",
-        "Escolha o instalador para seu sistema operacional (Windows: RubyInstaller; macOS: já vem instalado ou use Homebrew; Linux: use o gerenciador de pacotes)",
-        "Execute o instalador e siga as instruções",
-        "Após instalar, abra o terminal e digite 'ruby -v' para confirmar a versão"
-    ],
-    dicas: [
-        "Use o IRB (Interactive Ruby) para testar comandos rapidamente: 'irb' no terminal",
-        "Execute programas com 'ruby arquivo.rb'",
-        "Instale gems (bibliotecas) com 'gem install nome_da_gem'",
-        "O Ruby on Rails é um framework web poderoso para construir aplicações rapidamente"
-    ],
-    exemplo: `# Meu primeiro programa em Ruby
+    },
+    ruby: {
+        nome: "Ruby",
+        icone: "💎",
+        descricao: "Linguagem dinâmica, elegante e produtiva, famosa pelo framework Ruby on Rails. Ideal para desenvolvimento web e automação.",
+        sistemas: ["Windows", "macOS", "Linux"],
+        downloadLink: "https://www.ruby-lang.org/pt/downloads/",
+        documentacao: "https://www.ruby-lang.org/pt/documentation/",
+        compiladorOnline: "https://www.mycompiler.io/pt/new/ruby",
+        instalacao: [
+            "Acesse https://www.ruby-lang.org/pt/downloads/",
+            "Escolha o instalador para seu sistema operacional (Windows: RubyInstaller; macOS: já vem instalado ou use Homebrew; Linux: use o gerenciador de pacotes)",
+            "Execute o instalador e siga as instruções",
+            "Após instalar, abra o terminal e digite 'ruby -v' para confirmar a versão"
+        ],
+        dicas: [
+            "Use o IRB (Interactive Ruby) para testar comandos rapidamente: 'irb' no terminal",
+            "Execute programas com 'ruby arquivo.rb'",
+            "Instale gems (bibliotecas) com 'gem install nome_da_gem'",
+            "O Ruby on Rails é um framework web poderoso para construir aplicações rapidamente"
+        ],
+        exemplo: `# Meu primeiro programa em Ruby
 puts "Olá, mundo! Bem-vindo ao Ruby!"
 
 nome = "Aluno"
 puts "Olá, #{nome}!"`
-}
+    },
+    // No objeto ambienteData, adicione:
+    php: {
+        nome: "PHP",
+        icone: "🐘",
+        descricao: "Linguagem de script amplamente utilizada para desenvolvimento web, com foco em simplicidade e integração com servidores.",
+        sistemas: ["Windows", "macOS", "Linux"],
+        downloadLink: "https://www.php.net/downloads",
+        documentacao: "https://www.php.net/docs.php",
+        compiladorOnline: "https://www.programiz.com/php/online-compiler/",
+        instalacao: [
+            "Para ambiente completo, instale um servidor local como XAMPP, WAMP ou MAMP.",
+            "Ou baixe o PHP diretamente de https://www.php.net/downloads",
+            "Após instalar, verifique no terminal com 'php -v'",
+            "Crie arquivos .php e execute com 'php arquivo.php' no terminal ou via servidor web"
+        ],
+        dicas: [
+            "Use um servidor local como XAMPP para testes rápidos.",
+            "A sintaxe é semelhante a C e muito utilizada em conjunto com HTML.",
+            "Execute scripts no terminal com 'php script.php'.",
+            "Para iniciar um servidor embutido: 'php -S localhost:8000'"
+        ],
+        exemplo: `<?php
+// Meu primeiro programa em PHP
+$nome = "Aluno";
+echo "Olá, mundo! Bem-vindo ao PHP!\\n";
+echo "Olá, $nome!";
+?>`
+    }
 };
 
 // Estado da página ambiente
@@ -244,7 +272,7 @@ let currentAmbienteLanguage = 'portugol';
 // Renderiza a página completa de ambiente
 function renderAmbientePage() {
     const langData = ambienteData[currentLanguage] || ambienteData.portugol;
-    
+
     return `
         <div class="page-header">
             <h1 class="page-title">🖥️ Ambiente de Desenvolvimento</h1>
@@ -277,9 +305,9 @@ function renderAmbientePage() {
                     <h3>💻 Sistemas Operacionais</h3>
                     <div class="os-list">
                         ${langData.sistemas.map(os => {
-                            let icon = os === "Windows" ? "🪟" : os === "macOS" ? "🍎" : "🐧";
-                            return `<span class="os-item">${icon} ${os}</span>`;
-                        }).join('')}
+        let icon = os === "Windows" ? "🪟" : os === "macOS" ? "🍎" : "🐧";
+        return `<span class="os-item">${icon} ${os}</span>`;
+    }).join('')}
                     </div>
                 </div>
                 

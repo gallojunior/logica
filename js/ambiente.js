@@ -125,11 +125,11 @@ print(f"Olá, {nome}!")`
         icone: "☕",
         descricao: "Linguagem robusta, orientada a objetos, amplamente usada em empresas, aplicações desktop, web e Android.",
         sistemas: ["Windows", "macOS", "Linux"],
-        downloadLink: "https://www.oracle.com/java/technologies/downloads/",
+        downloadLink: "https://www.java.com/pt-BR/download/",
         documentacao: "https://docs.oracle.com/en/java/",
         compiladorOnline: "https://www.online-java.com/",
         instalacao: [
-            "Acesse https://www.oracle.com/java/technologies/downloads/",
+            "Acesse https://www.java.com/pt-BR/download/",
             "Baixe o JDK (Java Development Kit) mais recente",
             "Execute o instalador e siga as instruções padrão",
             "Configure a variável de ambiente JAVA_HOME (veja a documentação para seu SO)",

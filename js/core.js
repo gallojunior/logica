@@ -209,6 +209,14 @@ function loadLanguageScripts(language) {
     scripts.push('./js/php/arrays.js');
     scripts.push('./js/php/functions.js');
     scripts.push('./js/php/files.js');
+  } else if (language === 'r') {
+    scripts.push('./js/r/operators.js');
+    scripts.push('./js/r/conditions.js');
+    scripts.push('./js/r/loops.js');
+    scripts.push('./js/r/intro.js');
+    scripts.push('./js/r/arrays.js');
+    scripts.push('./js/r/functions.js');
+    scripts.push('./js/r/files.js');
   }
   scripts.push('./js/ambiente.js');
 
@@ -280,6 +288,13 @@ const languageColors = {
     gradient: "linear-gradient(135deg, #777BB4, #4F5B93)",
     light: "#e8eaf6",
     dark: "#3c4a6e"
+  },
+  r: {
+    primary: "#276DC3",
+    secondary: "#2060AB",
+    gradient: "linear-gradient(135deg, #276DC3, #2060AB)",
+    light: "#e6f0ff",
+    dark: "#1a4d87"
   }
 };
 
@@ -336,6 +351,7 @@ function getLanguageShortName() {
     case 'rust': return 'Rs';
     case 'ruby': return 'Rb';
     case 'php': return 'PHP';
+    case 'r': return 'R';
     default: return 'Pt';
   }
 }
@@ -354,6 +370,7 @@ function getLanguageDisplayName() {
     case 'rust': return 'Rust';
     case 'ruby': return 'Ruby';
     case 'php': return 'PHP';
+    case 'r': return 'R';
     default: return currentLanguage;
   }
 }
@@ -369,6 +386,7 @@ function getLanguageDescription() {
     case 'rust': return 'Rust, a linguagem de sistemas segura e performática';
     case 'ruby': return 'Ruby, a linguagem elegante e produtiva';
     case 'php': return 'PHP, a linguagem mais popular para web';
+    case 'r': return 'R, a linguagem para análise de dados e estatística';
     default: return currentLanguage;
   }
 }
@@ -384,6 +402,7 @@ function getArraysText() {
     case 'rust': return 'Vetores e Arrays';
     case 'ruby': return 'Arrays e Hashes';
     case 'php': return 'Arrays e Matrizes';
+    case 'r': return 'Vetores e Matrizes';
     default: return 'Arrays';
   }
 }

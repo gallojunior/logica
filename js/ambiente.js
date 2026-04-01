@@ -263,6 +263,31 @@ $nome = "Aluno";
 echo "Olá, mundo! Bem-vindo ao PHP!\\n";
 echo "Olá, $nome!";
 ?>`
+    },
+    r: {
+        nome: "R",
+        icone: "📊",
+        descricao: "Linguagem de programação voltada para análise estatística, ciência de dados e visualização.",
+        sistemas: ["Windows", "macOS", "Linux"],
+        downloadLink: "https://cran.r-project.org/",
+        documentacao: "https://cran.r-project.org/manuals.html",
+        compiladorOnline: "https://rdrr.io/snippets/",
+        instalacao: [
+            "Acesse https://cran.r-project.org/",
+            "Baixe o instalador para seu sistema operacional",
+            "Execute o instalador e siga as instruções",
+            "Após instalar, abra o terminal e digite `R` para iniciar o console"
+        ],
+        dicas: [
+            "Use o RStudio como IDE para maior produtividade.",
+            "No terminal, execute scripts com `Rscript script.r`.",
+            "Para ajuda, use `?funcao` no console.",
+            "R trabalha nativamente com vetores, listas e data frames."
+        ],
+        exemplo: `# Meu primeiro programa em R
+nome <- "Aluno"
+cat("Olá, mundo! Bem-vindo ao R!\\n")
+cat("Olá,", nome, "!\\n")`
     }
 };
 

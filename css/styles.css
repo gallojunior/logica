@@ -161,6 +161,18 @@ body[data-language="r"] {
   --active-text: #276DC3;
 }
 
+/* C/C++ */
+body[data-language="c_cpp"] {
+  --lang-primary: #004482;
+  --lang-secondary: #00599C;
+  --lang-gradient: linear-gradient(135deg, #004482, #00599C);
+  --lang-light: #e6f0ff;
+  --lang-dark: #003366;
+  --hover-bg: rgba(0, 68, 130, 0.1);
+  --active-bg: rgba(0, 68, 130, 0.15);
+  --active-text: #004482;
+}
+
 /* Tema Escuro - Ajustes para melhor contraste */
 body.dark-theme {
   --bg-primary: #0f172a;
@@ -255,6 +267,13 @@ body.dark-theme[data-language="r"] {
   --hover-bg: rgba(39, 109, 195, 0.2);
   --active-bg: rgba(39, 109, 195, 0.25);
   --active-text: #6ea5e8;
+}
+
+/* Tema escuro */
+body.dark-theme[data-language="c_cpp"] {
+  --hover-bg: rgba(0, 68, 130, 0.2);
+  --active-bg: rgba(0, 68, 130, 0.25);
+  --active-text: #6ea8fe;
 }
 
 /* ==================== ESTILOS GLOBAIS ==================== */

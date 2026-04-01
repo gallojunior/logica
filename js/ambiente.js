@@ -288,6 +288,38 @@ echo "Olá, $nome!";
 nome <- "Aluno"
 cat("Olá, mundo! Bem-vindo ao R!\\n")
 cat("Olá,", nome, "!\\n")`
+    },
+    c_cpp: {
+        nome: "C/C++",
+        icone: "⚙️",
+        descricao: "Linguagens poderosas e de alto desempenho, usadas em sistemas operacionais, jogos, embarcados e aplicações críticas. C é procedural, C++ adiciona orientação a objetos e templates.",
+        sistemas: ["Windows", "macOS", "Linux"],
+        downloadLink: "https://gcc.gnu.org/",
+        documentacao: "https://en.cppreference.com/w/",
+        compiladorOnline: "https://www.onlinegdb.com/",
+        instalacao: [
+            "Para Windows: instale MinGW ou use o compilador do Visual Studio (MSVC).",
+            "Para macOS: instale as ferramentas de linha de comando do Xcode: `xcode-select --install`.",
+            "Para Linux: instale o GCC com `sudo apt install gcc g++` (Ubuntu/Debian).",
+            "Verifique a instalação com `gcc --version` e `g++ --version`."
+        ],
+        dicas: [
+            "Use um editor como VS Code com extensões C/C++.",
+            "Para compilar programas C: `gcc arquivo.c -o programa`.",
+            "Para compilar programas C++: `g++ arquivo.cpp -o programa`.",
+            "Execute com `./programa` (Linux/macOS) ou `programa.exe` (Windows).",
+            "Para depuração, use `gdb` ou a ferramenta de depuração do seu IDE."
+        ],
+        exemplo: `#include <stdio.h>
+
+int main() {
+    printf("Olá, mundo! Bem-vindo ao C/C++!\\n");
+    char nome[50];
+    printf("Digite seu nome: ");
+    scanf("%s", nome);
+    printf("Olá, %s!\\n", nome);
+    return 0;
+}`
     }
 };
 

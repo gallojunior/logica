@@ -217,6 +217,14 @@ function loadLanguageScripts(language) {
     scripts.push('./js/r/arrays.js');
     scripts.push('./js/r/functions.js');
     scripts.push('./js/r/files.js');
+  } else if (language === 'c_cpp') {
+    scripts.push('./js/c_cpp/operators.js');
+    scripts.push('./js/c_cpp/conditions.js');
+    scripts.push('./js/c_cpp/loops.js');
+    scripts.push('./js/c_cpp/intro.js');
+    scripts.push('./js/c_cpp/arrays.js');
+    scripts.push('./js/c_cpp/functions.js');
+    scripts.push('./js/c_cpp/files.js');
   }
   scripts.push('./js/ambiente.js');
 
@@ -295,6 +303,13 @@ const languageColors = {
     gradient: "linear-gradient(135deg, #276DC3, #2060AB)",
     light: "#e6f0ff",
     dark: "#1a4d87"
+  },
+  c_cpp: {
+    primary: "#004482",
+    secondary: "#00599C",
+    gradient: "linear-gradient(135deg, #004482, #00599C)",
+    light: "#e6f0ff",
+    dark: "#003366"
   }
 };
 
@@ -352,6 +367,7 @@ function getLanguageShortName() {
     case 'ruby': return 'Rb';
     case 'php': return 'PHP';
     case 'r': return 'R';
+    case 'c_cpp': return 'C';
     default: return 'Pt';
   }
 }
@@ -371,6 +387,8 @@ function getLanguageDisplayName() {
     case 'ruby': return 'Ruby';
     case 'php': return 'PHP';
     case 'r': return 'R';
+    case 'c_cpp': return 'C/C++';
+
     default: return currentLanguage;
   }
 }
@@ -387,6 +405,7 @@ function getLanguageDescription() {
     case 'ruby': return 'Ruby, a linguagem elegante e produtiva';
     case 'php': return 'PHP, a linguagem mais popular para web';
     case 'r': return 'R, a linguagem para análise de dados e estatística';
+    case 'c_cpp': return 'C/C++, as linguagens de sistemas de alto desempenho';
     default: return currentLanguage;
   }
 }
@@ -403,6 +422,7 @@ function getArraysText() {
     case 'ruby': return 'Arrays e Hashes';
     case 'php': return 'Arrays e Matrizes';
     case 'r': return 'Vetores e Matrizes';
+    case 'c_cpp': return 'Arrays e Matrizes';
     default: return 'Arrays';
   }
 }
